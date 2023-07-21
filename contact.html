@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Personal Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="top-nav">
+      <div>
+        Sujit Adhikari
+      </div>
+      <input id="menu-toggle" type="checkbox" />
+      <label class='menu-button-container' for="menu-toggle">
+      <div class='menu-button'></div>
+    </label>
+      <ul class="menu">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="home.html#about">About</a></li>
+        <li><a href="home.html#">Portfolio</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>  
+    <section id="contact-form">
+        <h1>Contact Form</h1>
+        <p class="lead">Welcome to Contact Form</p>
+        <p class="error_message" id="error_message"></p>
+        <div class="form">
+            <form class="full-width" id="contactForm">
+                <div class="form-control">
+                <input type="text" name="name" id="name" class="input-field" placeholder="Your Name">
+                </div>
+                <div class="form-control">
+                    <input type="email" name="email" id="email" class="input-field" placeholder="Your Email">
+                </div>
+                <div class="form-control">
+                <input type="tel" id="phone" name="phone"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                class="input-field" placeholder="Phone Number">
+                </div>
+                <div class="form-control">
+                    <input type="text" name="subject" id="subject" class="input-field" placeholder="Subject">
+                </div>
+               <div class="form-control">
+                <textarea placeholder="Your Message"id="message" class="input-field"></textarea>
+               </div>
+               <input type="submit" value="Submit">
+            </form>
+        </div>
+      </section> 
+</div>
+
+</body>
+<script>
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let phone_input = document.getElementById("phone");
+    phone_input.addEventListener('input', () => {
+            phone_input.setCustomValidity('');
+            phone_input.checkValidity();
+            });
+
+            phone_input.addEventListener('invalid', () => {
+            if(phone_input.value === '') {
+                phone_input.setCustomValidity('Enter phone number!');
+            } else {
+                phone_input.setCustomValidity('Enter phone number in this format: 123-456-7890');
+            }
+            });
+    let subject = document.getElementById("subject");
+    let message = document.getElementById("message");
+    let error_message = document.getElementById("error_message");
+    let button = document.getElementById("submit");
+    let contactForm = document.getElementById("contactForm");
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if(name.value == "")
+        {
+            error_message.style.padding = "10px";
+            error_message.innerHTML = "Please enter your name";
+        }
+        else if(email.value == "")
+        {
+            error_message.style.padding = "10px";
+            error_message.innerHTML = "Please enter your email";
+        }
+        else if(phone.value == "")
+        {
+            error_message.style.padding = "10px";
+            error_message.innerHTML = "Please enter your phone number";
+        }
+        else if (subject.value == "")
+        {
+            error_message.style.padding = "10px";
+            error_message.innerHTML = "Please enter your subject";
+        }
+        else
+        {
+            const Contact = {
+                name: name.value,
+                email: email.value,
+                phone: phone.value,
+                subject: subject.value,
+                message: message.value
+            }
+            sessionStorage.setItem("Contact", JSON.stringify(Contact));
+            // sessionStorage.setItem('name', name.value);
+            // sessionStorage.setItem('email', email.value);
+            // sessionStorage.setItem('phone', phone.value);
+            // sessionStorage.setItem('subject', subject.value);
+            // sessionStorage.setItem('message', message.value);
+            window.location.href = "thankyou.html";
+        }
+        // handle submit
+        });
+
+  </script>
+</html>  
