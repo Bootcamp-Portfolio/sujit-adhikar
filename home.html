@@ -1,37 +1,84 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Personal Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="top-nav">
-        <div>Sujit Adhikari</div>
-        <input id="menu-toggle" type="checkbox" />
-        <label class="menu-button-container" for="menu-toggle">
-          <div class="menu-button"></div>
-        </label>
-        <ul class="menu">
-          <li><a href="home.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <section id="home">
-        <h1>sujit Adhikari</h1>
-        <p class="lead">Welcome to my portfolio.</p>
-      </section>
-      <section id="about">
-        <h1>About Me</h1>
-        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus cumque natus ab, dignissimos soluta omnis nobis temporibus! Expedita, consequuntur doloribus repudiandae iste blanditiis ipsum? Adipisci itaque distinctio natus cupiditate fuga.</p>
-      </section>
-      <section id="portfolio">
-        <h1>My Portfolio</h1>
-        <p class="lead">I have work on many small projects in Node js and in React js too .</p>
-      </section>
+
+<head>
+  <title>Personal Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <!-- Include the Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <!-- Include the Font Awesome JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/js/all.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-nav">
+      <input id="menu-toggle" type="checkbox" />
+      <label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+      </label>
+      <ul class="menu">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
     </div>
-  </body>
+    <section id="home">
+      <div class="intro">
+        <h2>Hi! I am</h2>
+        <h1><span id="typing-text"></span><span id="caret" class="show-caret">_</span></h1>
+        <p class="lead">Welcome to my portfolio.</p>
+      </div>
+      <h3 class="about">About Me</h3>
+      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus cumque natus ab, dignissimos soluta
+        omnis nobis temporibus! Expedita, consequuntur doloribus repudiandae iste blanditiis ipsum? Adipisci itaque
+        distinctio natus cupiditate fuga.</p>
+    </section>
+
+
+
+
+    <section id="portfolio">
+      <h1>My Portfolio</h1>
+      <p class="lead">I have work on many small projects in Node js and in React js too .</p>
+    </section>
+  </div>
+
+
+
+  <script>
+    // Function to remove the caret with animation after typing animation ends
+    function removeCaret() {
+      const caretElement = document.getElementById("caret");
+      caretElement.classList.add("hide-caret");
+    }
+
+    // Trigger the typing animation on page load
+    document.addEventListener("DOMContentLoaded", function () {
+      const text = "Sujit Adhikari";
+      const h1Element = document.getElementById("typing-text");
+      const caretElement = document.getElementById("caret");
+
+      h1Element.textContent = "";
+      caretElement.style.display = "inline"; // Show the caret before typing animation
+
+      let i = 0;
+      const typingInterval = setInterval(function () {
+        h1Element.textContent += text.charAt(i);
+        i++;
+        if (i === text.length) {
+          clearInterval(typingInterval);
+          removeCaret(); // Call removeCaret() to remove the caret with animation after typing animation
+        }
+      }, 100);
+    });
+
+
+  </script>
+
+
+</body>
+
 </html>
